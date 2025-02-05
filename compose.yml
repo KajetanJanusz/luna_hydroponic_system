@@ -1,0 +1,21 @@
+services:
+  backend:
+    build:
+      context: ./be_hydroponic_system
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    command: poetry run python manage.py runserver 0.0.0.0:8000
+
+  frontend:
+    build:
+      context: ./fe_hydroponic_system
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run serve
