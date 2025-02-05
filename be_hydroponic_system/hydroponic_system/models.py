@@ -20,7 +20,7 @@ class HydroponicSystem(models.Model):
     ]
 
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     system_type = models.CharField(
         max_length=4,
         choices=SYSTEM_TYPES,
@@ -35,3 +35,13 @@ class HydroponicSystem(models.Model):
 
     def __str__(self):
         return self.name
+
+class Measurement(models.Model):
+    hydroponic_system = models.ForeignKey(HydroponicSystem, on_delete=models.CASCADE, related_name="measurements")
+    ph_level = models.FloatField()
+    water_temperature = models.FloatField()
+    tds_level = models.FloatField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Measurement for {self.hydroponic_system.name} at {self.timestamp}"

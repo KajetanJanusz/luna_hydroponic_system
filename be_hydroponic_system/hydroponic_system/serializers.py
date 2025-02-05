@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser, HydroponicSystem
+from .models import CustomUser, HydroponicSystem, Measurement
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,3 +29,7 @@ class HydroponicSystemSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("EC level cannot be negative.")
         return value
 
+class MeasurementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Measurement
+        fields = ['ph_level', 'water_temperature', 'tds_level']
