@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 from .views import CustomUserCreateView, HydroponicSystemViewSet, MeasurementCreateView, MeasurementListView
 
 router = DefaultRouter()
-router.register(r'hydroponic-systems', HydroponicSystemViewSet)
+router.register(r'hydroponic-systems', HydroponicSystemViewSet, basename='hydroponic-system')
 
 urlpatterns = [
     path('register/', CustomUserCreateView.as_view(), name='user-register'),

@@ -45,6 +45,7 @@ OUR_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'django_filters',
 ]
 
 
@@ -81,6 +82,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# Rest framework
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.SearchFilter',
+    ],
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
